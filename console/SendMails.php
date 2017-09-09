@@ -21,7 +21,7 @@ class SendMails extends Command {
             ->get();
 
         foreach ($birthdays as $user) {
-            Mail::send('martin.birthdays::mail.birthday', [$user], function ($message) use ($user) {
+            Mail::send('martin.birthdays::mail.birthday', ['user' => $user], function ($message) use ($user) {
                 $message->to($user->email, $user->name);
             });
         }
