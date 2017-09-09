@@ -1,6 +1,7 @@
 birthday:
-    tab  : rainlab.user::lang.user.account
-    label: martin.birthdays::lang.fields.birthday
-    type : datepicker
-    mode : date
-    span : left
+    tab   : rainlab.user::lang.user.account
+    label : martin.birthdays::lang.fields.birthday
+    type  : datepicker
+    mode  : date
+    format: Y-m-d
+    span  : left
