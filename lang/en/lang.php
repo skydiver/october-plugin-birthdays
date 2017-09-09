@@ -11,4 +11,10 @@ return [
         'birthday' => 'Birthday'
     ],
 
+    'mails' => [
+        'birthday' => [
+            'description' => 'Birthday email',
+        ],
+    ],
+
 ];

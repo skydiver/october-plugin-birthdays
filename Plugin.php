@@ -2,8 +2,9 @@
 
 namespace Martin\Birthdays;
 
-use Yaml;
 use File;
+use Lang;
+use Yaml;
 use System\Classes\PluginBase;
 use RainLab\User\Models\User as UserModel;
 use RainLab\User\Controllers\Users as UsersController;
@@ -33,6 +34,12 @@ class Plugin extends PluginBase {
             $widget->addTabFields($config);
         });
 
+    }
+
+    public function registerMailTemplates() {
+        return [
+            'martin.birthdays::mail.birthday' => Lang::get('martin.birthdays::lang.mails.birthday.description'),
+        ];
     }
 
 }
