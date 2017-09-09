@@ -36,6 +36,10 @@ class Plugin extends PluginBase {
 
     }
 
+    public function register() {
+        $this->registerConsoleCommand('birthdays.sendmails', 'Martin\Birthdays\Console\SendMails');
+    }
+
     public function registerMailTemplates() {
         return [
             'martin.birthdays::mail.birthday' => Lang::get('martin.birthdays::lang.mails.birthday.description'),
