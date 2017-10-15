@@ -9,7 +9,6 @@ use System\Helpers\DateTime as DateTimeHelper;
 
 class Birthday extends FormWidgetBase {
 
-    public $mode = 'datetime';
     public $format = null;
     public $minDate = null;
     public $maxDate = null;
@@ -20,26 +19,21 @@ class Birthday extends FormWidgetBase {
     protected $defaultAlias = 'birthday';
 
     public function init() {
-        $this->fillFromConfig([
-            'format',
-            'mode',
-            'minDate',
-            'maxDate',
-            'yearRange',
-            'firstDay',
-            'ignoreTimezone',
-        ]);
-        $this->mode = strtolower($this->mode);
+
+        $this->fillFromConfig(['format', 'minDate', 'maxDate', 'yearRange', 'firstDay', 'ignoreTimezone']);
+
         if ($this->minDate !== null) {
             $this->minDate = is_integer($this->minDate)
                 ? Carbon::createFromTimestamp($this->minDate)
                 : Carbon::parse($this->minDate);
         }
+
         if ($this->maxDate !== null) {
             $this->maxDate = is_integer($this->maxDate)
                 ? Carbon::createFromTimestamp($this->maxDate)
                 : Carbon::parse($this->maxDate);
         }
+
     }
 
     public function render() {
@@ -55,7 +49,6 @@ class Birthday extends FormWidgetBase {
         $this->vars['name'] = $this->getFieldName();
         $this->vars['value'] = $value ?: '';
         $this->vars['field'] = $this->formField;
-        $this->vars['mode'] = $this->mode;
         $this->vars['minDate'] = $this->minDate;
         $this->vars['maxDate'] = $this->maxDate;
         $this->vars['yearRange'] = $this->yearRange;
@@ -86,13 +79,7 @@ class Birthday extends FormWidgetBase {
         if ($this->format) {
             return null;
         }
-        if ($this->mode == 'time') {
-            return 'time';
-        } elseif ($this->mode == 'date') {
-            return 'dateLong';
-        } else {
-            return 'dateTimeLong';
-        }
+        return 'dateLong';
     }
 
 }
