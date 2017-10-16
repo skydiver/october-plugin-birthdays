@@ -26,6 +26,7 @@ return [
             'status' => 'Status',
             'ok'     => 'OK',
             'error'  => 'Error',
+            'skip'   => 'Already sent'
         ],
     ],
 

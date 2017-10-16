@@ -26,6 +26,7 @@ class Plugin extends PluginBase {
 
         UserModel::extend(function ($model) {
             $model->addFillable(['birthday']);
+            $model->addJsonable(['birthday_log']);
         });
 
         UsersController::extendFormFields(function ($widget, $model, $context) {

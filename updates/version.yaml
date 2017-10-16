@@ -1,3 +1,6 @@
 1.0.0:
     - First version of Birthdays
     - user_add_birthday_field.php
+1.0.1:
+    - Added emails log
+    - user_add_birthday_log.php
