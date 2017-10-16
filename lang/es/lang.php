@@ -8,7 +8,7 @@ return [
     ],
 
     'fields' => [
-        'birthday' => 'Fecha de cumpleaños'
+        'birthday' => 'Fecha de nacimiento'
     ],
 
     'mails' => [
