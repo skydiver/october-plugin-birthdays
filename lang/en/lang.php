@@ -17,4 +17,16 @@ return [
         ],
     ],
 
+    'console' => [
+        'empty' => 'There is no birthdays',
+        'cols'  => [
+            'user'   => 'User',
+            'email'  => 'Email',
+            'date'   => 'Date',
+            'status' => 'Status',
+            'ok'     => 'OK',
+            'error'  => 'Error',
+        ],
+    ],
+
 ];
