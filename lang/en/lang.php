@@ -17,6 +17,18 @@ return [
         ],
     ],
 
+    'settings' => [
+        'label'          => 'Birthdays',
+        'url'            => 'Cron URL',
+        'token'          => 'Security Token',
+        'token_comments' => 'Security code to access Cron URL',
+        'regenerate'     => 'Regenerate Token',
+    ],
+
+    'permissions' => [
+        'label' => 'Manage Birthdays Settings',
+    ],
+
     'console' => [
         'empty' => 'There is no birthdays',
         'cols'  => [

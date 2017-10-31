@@ -1,0 +1,14 @@
+<a data-toggle="modal" href="#content-confirmation" class="btn btn-danger"><?php echo e(trans('martin.birthdays::lang.settings.regenerate')) ?></a>
+
+<div class="control-popup modal fade" id="content-confirmation" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body p-t-md"><?php echo e(trans('backend::lang.relation.delete_confirm')) ?></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo e(trans('backend::lang.form.cancel')) ?></button>
+                <a href="<?php echo Backend::url('martin/birthdays/token/regenerate') ?>" class="btn btn-danger"><?php echo e(trans('backend::lang.form.ok')) ?></a>
+            </div>
+        </div>
+    </div>
+</div>
+

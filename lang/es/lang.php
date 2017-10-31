@@ -17,4 +17,12 @@ return [
         ],
     ],
 
+    'settings' => [
+        'label'       => 'Cumpleaños',
+    ],
+
+    'permissions' => [
+        'label' => 'Administrar la configuración de cumpleaños',
+    ],
+
 ];

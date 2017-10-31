@@ -1,0 +1,14 @@
+fields:
+
+    url:
+        label  : martin.birthdays::lang.settings.url
+        type   : partial
+        path   : $/martin/birthdays/models/settings/_url_field.htm
+
+    token:
+        label  : martin.birthdays::lang.settings.token
+        comment: martin.birthdays::lang.settings.token_comments
+
+    regenerate:
+        type   : partial
+        path   : $/martin/birthdays/models/settings/_regenerate_field.htm

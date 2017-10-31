@@ -6,6 +6,7 @@ use File;
 use Lang;
 use Yaml;
 use System\Classes\PluginBase;
+use System\Classes\SettingsManager;
 use RainLab\User\Models\User as UserModel;
 use RainLab\User\Controllers\Users as UsersController;
 
@@ -37,6 +38,20 @@ class Plugin extends PluginBase {
 
     }
 
+    public function registerSettings() {
+        return [
+            'settings' => [
+                'label'       => 'martin.birthdays::lang.settings.label',
+                'description' => 'martin.birthdays::lang.plugin.description',
+                'icon'        => 'icon-birthday-cake',
+                'class'       => '\Martin\Birthdays\Models\Settings',
+                'order'       => 600,
+                'permissions' => ['martin.birthdays.access_settings'],
+                'category'    => SettingsManager::CATEGORY_USERS,
+            ]
+        ];
+    }
+
     public function register() {
         $this->registerConsoleCommand('birthdays.sendmails', 'Martin\Birthdays\Console\SendMails');
     }
@@ -50,6 +65,15 @@ class Plugin extends PluginBase {
     public function registerFormWidgets() {
         return [
             'Martin\Birthdays\FormWidgets\Birthday' => 'birthday',
+        ];
+    }
+
+    public function registerPermissions() {
+        return [
+            'martin.birthdays.access_settings' => [
+                'tab'   => 'rainlab.user::lang.plugin.tab',
+                'label' => 'martin.birthdays::lang.permissions.label'
+            ],
         ];
     }
 
