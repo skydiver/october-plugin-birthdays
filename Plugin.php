@@ -36,6 +36,8 @@ class Plugin extends PluginBase {
             $widget->addTabFields($config);
         });
 
+        $this->app['router']->middleware('token', 'Martin\Birthdays\Classes\TokenMiddleware');
+
     }
 
     public function registerSettings() {

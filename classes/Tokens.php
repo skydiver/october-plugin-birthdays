@@ -1,6 +1,6 @@
 <?php
 
-    namespace Martin\Birthdays\Classes;
+namespace Martin\Birthdays\Classes;
 
 class Tokens {
 
