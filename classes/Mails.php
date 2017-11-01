@@ -33,6 +33,7 @@ class Mails {
 
             // GET EMAILS LOG
             $log = BirthdaysLog::where('user_id', $user->id)
+                ->where('status', Lang::get('martin.birthdays::lang.console.cols.ok'))
                 ->where('year', $year)
                 ->first();
 
