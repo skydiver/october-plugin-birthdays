@@ -7,3 +7,6 @@
 1.0.2:
     - Created cron url to send birthdays emails
     - seed_default_token.php
+1.0.3:
+    - Dedicated birthdays logs table
+    - create_birthday_logs_table.php

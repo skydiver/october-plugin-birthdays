@@ -5,6 +5,7 @@ namespace Martin\Birthdays\Classes;
 use DB;
 use Lang;
 use Mail;
+use Martin\Birthdays\Models\Log as BirthdaysLog;
 use RainLab\User\Models\User as UserModel;
 
 class Mails {
@@ -13,13 +14,16 @@ class Mails {
 
         // GET ALL BIRTHDAYS FOR TODAY
         $birthdays = UserModel::where(DB::raw('MONTH(birthday)'), DB::raw('MONTH(NOW())'))
-            // ->where(DB::raw('DAY(birthday)'), DB::raw('DAY(NOW())'))
+            ->where(DB::raw('DAY(birthday)'), DB::raw('DAY(NOW())'))
             ->get();
 
         // IF NO BIRTHDAYS STOP HERE
         if (count($birthdays) == 0) {
             return Lang::get('martin.birthdays::lang.console.empty');
         }
+
+        // YEAR TO SEND
+        $year = date('Y');
 
         // SAVE RESULT
         $result = [];
@@ -28,16 +32,14 @@ class Mails {
         foreach ($birthdays as $user) {
 
             // GET EMAILS LOG
-            $log = (!is_array($user->birthday_log)) ? [] : $user->birthday_log;
+            $log = BirthdaysLog::where('user_id', $user->id)
+                ->where('year', $year)
+                ->first();
 
             // SKIP IF ALREADY SENT
-            if ($log != '' && array_key_exists(date('Y'), $log)) {
-                $result[] = [
-                    $user->name . ' ' . $user->surname,
-                    $user->email,
-                    date('Y-m-d H:i:s'),
-                    Lang::get('martin.birthdays::lang.console.cols.skip')
-                ];
+            if (!empty($log)) {
+                $result[] = self::_storeResult($user, 3);
+                self::_storeLog($user, Lang::get('martin.birthdays::lang.console.cols.skip'), $year);
                 continue;
             }
 
@@ -47,22 +49,43 @@ class Mails {
             });
 
             // STORE RESULT FOR LATER
-            $result[] = [
-                $user->name . ' ' . $user->surname,
-                $user->email,
-                date('Y-m-d H:i:s'),
-                ($ok == 1) ? Lang::get('martin.birthdays::lang.console.cols.ok') : Lang::get('martin.birthdays::lang.console.cols.error')
-            ];
+            $status   = ($ok == 1) ? 1 : 2;
+            $result[] = self::_storeResult($user, $status);
 
             // ADD EMAIL LOG
-            $log[date('Y')] = date('Y-m-d H:i:s');
-            $user->birthday_log = $log;
-            $user->save();
+            $status = ($ok == 1) ? Lang::get('martin.birthdays::lang.console.cols.ok') : Lang::get('martin.birthdays::lang.console.cols.error');
+            self::_storeLog($user, $status, $year);
 
         }
 
         // GET RESULT
         return $result;
+
+    }
+
+    private static function _storeLog($user, $status, $year) {
+        $newLog = new BirthdaysLog;
+        $newLog->user_id = $user->id;
+        $newLog->email   = $user->email;
+        $newLog->status  = $status;
+        $newLog->year    = $year;
+        $newLog->save();
+    }
+
+    private static function _storeResult($user, $message) {
+
+        $messages = [
+            1 => Lang::get('martin.birthdays::lang.console.cols.ok'),
+            2 => Lang::get('martin.birthdays::lang.console.cols.error'),
+            3 => Lang::get('martin.birthdays::lang.console.cols.skip'),
+        ];
+
+        return [
+            $user->name . ' ' . $user->surname,
+            $user->email,
+            date('Y-m-d H:i:s'),
+            $messages[$message]
+        ];
 
     }
 
