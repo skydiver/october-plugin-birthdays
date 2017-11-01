@@ -49,7 +49,16 @@ class Plugin extends PluginBase {
                 'order'       => 600,
                 'permissions' => ['martin.birthdays.access_settings'],
                 'category'    => SettingsManager::CATEGORY_USERS,
-            ]
+            ],
+            'logs' => [
+                'label'       => 'martin.birthdays::lang.logs.label',
+                'description' => 'martin.birthdays::lang.logs.description',
+                'icon'        => 'icon-birthday-cake',
+                'url'         => \Backend::url('martin/birthdays/logs'),
+                'order'       => 1000,
+                'permissions' => ['martin.birthdays.access_settings'],
+                'category'    => SettingsManager::CATEGORY_LOGS,
+            ],
         ];
     }
 

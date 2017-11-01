@@ -1,0 +1,23 @@
+columns:
+
+    created_at:
+        label     : martin.birthdays::lang.logs.columns.created_at
+        searchable: yes
+
+    user:
+        label     : martin.birthdays::lang.logs.columns.user_id
+        searchable: yes
+        relation  : user
+        select    : concat(name, ' ', surname)
+
+    email:
+        label     : martin.birthdays::lang.logs.columns.email
+        searchable: yes
+
+    year:
+        label     : martin.birthdays::lang.logs.columns.year
+        searchable: yes
+
+    status:
+        label     : martin.birthdays::lang.logs.columns.status
+        searchable: yes

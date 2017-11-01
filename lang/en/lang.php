@@ -25,6 +25,18 @@ return [
         'regenerate'     => 'Regenerate Token',
     ],
 
+    'logs' => [
+        'label'       => 'Birthdays Logs',
+        'description' => 'View birthdays emails logs',
+        'columns'     => [
+            'created_at' => 'Sent Date',
+            'user_id'    => 'User ID',
+            'email'      => 'Email',
+            'year'       => 'Year',
+            'status'     => 'Status',
+        ],
+    ],
+
     'permissions' => [
         'label' => 'Manage Birthdays Settings',
     ],
