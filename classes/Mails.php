@@ -50,11 +50,11 @@ class Mails {
             });
 
             // STORE RESULT FOR LATER
-            $status   = ($ok == 1) ? 1 : 2;
+            $status   = ($ok) ? 1 : 2;
             $result[] = self::_storeResult($user, $status);
 
             // ADD EMAIL LOG
-            $status = ($ok == 1) ? Lang::get('martin.birthdays::lang.console.cols.ok') : Lang::get('martin.birthdays::lang.console.cols.error');
+            $status = ($ok) ? Lang::get('martin.birthdays::lang.console.cols.ok') : Lang::get('martin.birthdays::lang.console.cols.error');
             self::_storeLog($user, $status, $year);
 
         }
